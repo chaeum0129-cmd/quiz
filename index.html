@@ -63,6 +63,8 @@
   .qtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:10px;}
   .pill{font-family:'Gaegu',cursive;background:#fff;border:3px solid var(--line);border-radius:16px;padding:6px 13px;font-size:17px;color:var(--ink);box-shadow:var(--shadow);}
   .pill .hot{color:#ff7a3c;}
+  .homebtn{font-family:'Gaegu',cursive;cursor:pointer;font-size:19px;line-height:1;}
+  .homebtn:hover{border-color:var(--pink);}
   .pbar{height:14px;background:#fff;border:3px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:16px;}
   .pbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--yellow),var(--pink));width:0;transition:.35s;border-radius:20px;}
 
@@ -140,6 +142,7 @@
   <!-- QUIZ -->
   <section id="quiz" class="hidden">
     <div class="qtop">
+      <button class="pill homebtn" onclick="quitQuiz()">🏠</button>
       <span class="pill" id="progPill">1 / 10</span>
       <span class="pill" id="scorePill">⭐ 0</span>
       <span class="pill" id="streakPill"><span class="hot">🔥</span> 0연속</span>
@@ -498,6 +501,9 @@ function goHome(){
   document.getElementById('result').classList.add('hidden');
   document.getElementById('home').classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+function quitQuiz(){
+  if(confirm('퀴즈를 그만두고 처음으로 갈까요? 지금 점수는 사라져요!')) goHome();
 }
 </script>
 </body>
