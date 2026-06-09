@@ -405,7 +405,7 @@ function startQuiz(){
 
 const NUMS=['①','②','③','④'];
 const OKMSG=['딩동댕! 🎉','정답이에요! 👏','완벽해요! 💯','오~ 잘하는데요? ✨','맞았어요! 🌟'];
-const BADMSG=['아쉬워요 🥲','조금 더! 💪','괜찮아요, 외워두기! 📌','다음엔 맞힐 거예요 🍀'];
+const BADMSG=['아쉬워요 😢','조금 더! 💪','괜찮아요, 외워두기! 📌','다음엔 맞힐 거예요 🍀'];
 
 function renderQ(){
   const q=quiz.qs[quiz.cur];
@@ -451,7 +451,7 @@ function choose(i,btn){
     document.getElementById('subTag').className='subtag';
   }else{
     quiz.streak=0;
-    em.textContent='🥲';
+    em.textContent='😢';
     msg.textContent=BADMSG[Math.floor(Math.random()*BADMSG.length)];
     msg.className='fb-msg bad';
     document.getElementById('subTag').className='subtag bad';
@@ -482,10 +482,10 @@ function showResult(){
   document.getElementById('rNum').textContent=pct;
   document.getElementById('rSub').textContent=`${total}문제 중 ${quiz.score}개 정답 · 최고 ${quiz.best}연속 🔥`;
   let title,mascot,stars;
-  if(pct>=90){title='베이킹 천재! 👑';mascot='👑';stars='⭐⭐⭐';}
-  else if(pct>=70){title='오븐 마스터 🧑‍🍳';mascot='🥳';stars='⭐⭐⭐';}
+  if(pct>=90){title='베이킹 천재! 👑';mascot='😆';stars='⭐⭐⭐';}
+  else if(pct>=70){title='오븐 마스터 😋';mascot='😄';stars='⭐⭐⭐';}
   else if(pct>=50){title='성장 중인 파티시에 🌱';mascot='😊';stars='⭐⭐☆';}
-  else if(pct>=30){title='연습이 필요해요 💪';mascot='🥲';stars='⭐☆☆';}
+  else if(pct>=30){title='연습이 필요해요 💪';mascot='😢';stars='⭐☆☆';}
   else {title='다시 한 판 가볼까요? 🍞';mascot='😅';stars='☆☆☆';}
   document.getElementById('rTitle').textContent=title;
   document.getElementById('rMascot').textContent=mascot;
