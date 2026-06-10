@@ -133,6 +133,10 @@
 
     <button class="btn" onclick="startQuiz()">퀴즈 시작! ✨</button>
 
+    <div class="center" style="margin-top:18px;font-size:15px;color:var(--ink-soft)">
+      👣 방문 <b id="visitCount" style="color:var(--pink-d)">-</b>번째
+    </div>
+
     <div class="copyright">
       본 자료는 퍼스트바리스타제과제빵화성의 교육용 자료입니다.<br>
       무단 복제·배포·외부 공유를 금합니다. 위반 시 관련 법령에 따라 신고 및 법적 조치가 이루어질 수 있습니다.<br>
@@ -506,6 +510,28 @@ function goHome(){
 function quitQuiz(){
   if(confirm('퀴즈를 그만두고 처음으로 갈까요? 지금 점수는 사라져요!')) goHome();
 }
+
+/* ===== 방문 횟수 ===== */
+async function bumpVisits(){
+  let count=null;
+  try{
+    if(window.storage){
+      let g=null; try{g=await window.storage.get('quiz_visit_count',true);}catch(e){}
+      count=(g&&g.value)?(parseInt(g.value)||0):0;
+      count++;
+      await window.storage.set('quiz_visit_count',String(count),true);
+    }
+  }catch(e){count=null;}
+  if(count===null){
+    try{
+      count=(parseInt(localStorage.getItem('quiz_visit_count'))||0)+1;
+      localStorage.setItem('quiz_visit_count',String(count));
+    }catch(e){count=null;}
+  }
+  const el=document.getElementById('visitCount');
+  if(el) el.textContent=(count===null?'-':count.toLocaleString());
+}
+window.addEventListener('load',bumpVisits);
 </script>
 </body>
 </html>
